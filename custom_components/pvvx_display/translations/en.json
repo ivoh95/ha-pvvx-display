@@ -1,0 +1,56 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Add a PVVX display",
+                "description": "Enter the Bluetooth address of a thermometer running compatible PVVX/ATC firmware.",
+                "data": {
+                    "address": "Bluetooth address"
+                },
+                "data_description": {
+                    "address": "The thermometer's Bluetooth MAC address, for example AA:BB:CC:DD:EE:FF."
+                }
+            }
+        },
+        "error": {
+            "invalid_address": "Enter a Bluetooth address in the format AA:BB:CC:DD:EE:FF."
+        },
+        "abort": {
+            "already_configured": "This PVVX display is already configured."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Display settings",
+                "description": "Pick the sensors to show and the fallback values. A selected sensor takes precedence over its fallback number.",
+                "data": {
+                    "auto_update": "Automatically update the display",
+                    "permanent": "Show only Home Assistant data",
+                    "keep_alive": "Keep the Bluetooth connection open",
+                    "big_number_entity": "Big number sensor",
+                    "small_number_entity": "Small number sensor",
+                    "big_number": "Fallback big number",
+                    "small_number": "Fallback small number",
+                    "min_update_interval": "Minimum seconds between updates",
+                    "validity_period": "Refresh / validity period (seconds)",
+                    "unit": "Big number unit",
+                    "happy": "Happy face",
+                    "sad": "Sad face",
+                    "bracket": "Brackets around face",
+                    "percent": "Percent sign",
+                    "battery": "Battery icon"
+                },
+                "data_description": {
+                    "auto_update": "When on and at least one sensor is selected, the display is updated whenever that sensor changes and is refreshed periodically. Turn off to update only via the pvvx_display.show action.",
+                    "permanent": "Show only the pushed values until the device reboots, instead of alternating with the thermometer's own readings every 2.5 seconds. Requires PVVX firmware v4.4+. When off, the display reverts after the validity period below.",
+                    "keep_alive": "Reuse one open Bluetooth connection for every update instead of reconnecting. Recommended for frequent updates or if other Bluetooth integrations are affected. Permanently uses one connection slot and keeps the thermometer's radio active.",
+                    "big_number_entity": "Shown as the large value. Leave empty to use the fallback big number.",
+                    "small_number_entity": "Shown as the small value. Leave empty to use the fallback small number.",
+                    "min_update_interval": "At most one Bluetooth update per this many seconds; the latest value is sent once the interval passes.",
+                    "validity_period": "Only used when \"Show only Home Assistant data\" is off: seconds the pushed values stay on screen before the thermometer reverts to its own readings. Automatic updates refresh just before this expires."
+                }
+            }
+        }
+    }
+}

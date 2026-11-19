@@ -1,0 +1,92 @@
+show:
+  name: Show values
+  description: Send values to the display. Unspecified fields use the device's configured defaults.
+  target:
+    device:
+      integration: pvvx_display
+  fields:
+    big_number:
+      name: Big number
+      selector:
+        number:
+          min: -99.5
+          max: 1999.5
+          step: 0.1
+          mode: box
+    big_number_entity:
+      name: Big number sensor
+      description: Use the current state of this sensor instead of a literal value.
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+    small_number:
+      name: Small number
+      selector:
+        number:
+          min: -9
+          max: 99
+          step: 1
+          mode: box
+    small_number_entity:
+      name: Small number sensor
+      description: Use the current state of this sensor instead of a literal value.
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+    permanent:
+      name: Show only this data
+      description: >-
+        Keep only the pushed values on screen permanently (firmware v4.4+), with
+        no switching to the device's own measurements. Overrides the validity
+        period for this call.
+      selector:
+        boolean:
+    validity_period:
+      name: Validity period
+      description: >-
+        Override the number of seconds the external values remain active before
+        the device reverts to its own measurements. Ignored when "Show only this
+        data" is on.
+      selector:
+        number:
+          min: 1
+          max: 65535
+          step: 1
+          unit_of_measurement: s
+          mode: box
+    unit:
+      name: Big number unit
+      selector:
+        select:
+          mode: dropdown
+          options:
+            - { value: none, label: "None" }
+            - { value: celsius, label: "Celsius (°C)" }
+            - { value: fahrenheit, label: "Fahrenheit (°F)" }
+            - { value: degree_e, label: "Degree (°E)" }
+            - { value: degree_ghe, label: "Degree (°Г)" }
+            - { value: minus, label: "Minus (-)" }
+            - { value: low_dash, label: "Underscore (_)" }
+            - { value: lines, label: "Lines (=)" }
+    happy:
+      name: Happy face
+      selector:
+        boolean:
+    sad:
+      name: Sad face
+      selector:
+        boolean:
+    bracket:
+      name: Brackets around face
+      selector:
+        boolean:
+    percent:
+      name: Percent sign
+      selector:
+        boolean:
+    battery:
+      name: Battery icon
+      selector:
+        boolean:
